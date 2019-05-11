@@ -1,3 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket  = "terrform-up-and-running-state"
+    key     = "global/s3/terraform.tfstate"
+    region  = "us-west-1"
+    encrypt = true
+    profile = "terraform"
+  }
+}
+
 provider "aws" {
   region  = "us-west-1"
   profile = "terraform"
