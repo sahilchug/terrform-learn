@@ -10,3 +10,7 @@ terraform graph
 terraform plan
 terraform apply
 ```
+
+# notes
+
+1. add profile setting to use a particular aws account
