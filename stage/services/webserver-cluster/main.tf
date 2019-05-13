@@ -1,10 +1,10 @@
 terraform {
   backend "s3" {
-    bucket  = "terrform-up-and-running-state"
-    key     = "global/s3/terraform.tfstate"
-    region  = "us-west-1"
-    encrypt = true
-    profile = "terraform"
+    bucket         = "sc-terraform-up-and-running-state"
+    key            = "stage/services/webserver-cluster/terraform.tfstate"
+    region         = "us-west-1"
+    encrypt        = true
+    profile        = "terraform"
     dynamodb_table = "terraform-state-lock-dynamo"
   }
 }
@@ -12,11 +12,6 @@ terraform {
 provider "aws" {
   region  = "us-west-1"
   profile = "terraform"
-}
-
-variable "server_port" {
-  description = "The port the server will use for HTTP requests"
-  default     = 8080
 }
 
 data "aws_availability_zones" "all" {}
@@ -106,8 +101,4 @@ resource "aws_security_group" "elb" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
-
-output "elb_dns_name" {
-  value = "${aws_elb.example.dns_name}"
 }
